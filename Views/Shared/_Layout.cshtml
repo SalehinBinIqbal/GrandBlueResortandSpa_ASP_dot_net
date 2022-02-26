@@ -32,7 +32,7 @@
                         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
                             <span class="navbar-toggler-icon"></span>
                         </button>
-                        <a class="btn btn-secondary" href="book.php" target="_blank" role="button">Reservation</a>
+                        <a class="btn btn-secondary" href="@Url.Action("Index","Reservation")" target="_blank" role="button">Reservation</a>
                         <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
                             <div class="offcanvas-header">
                                 <h3 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h3>
@@ -152,7 +152,7 @@
                                     <a class="footerlink" href="@Url.Action("Rooms","Home")">Stay</a>
                                 </div>
                                 <div class="col-sm-6">
-                                    <a class="footerlink" href="book.php" target="_blank">Book</a>
+                                    <a class="footerlink" href="@Url.Action("Index","Reservation")" target="_blank">Book</a>
                                 </div>
                                 <div class="col-sm-6">
                                     <a class="footerlink" href="@Url.Action("Dine","Home")">Dine</a>
