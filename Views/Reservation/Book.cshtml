@@ -1,4 +1,4 @@
-﻿
+﻿@model GrandBlueResortandSpa.Models.BOOKING
 @{
     ViewBag.Title = "Book";
     Layout = null;
@@ -83,12 +83,12 @@
 
                                         <div class="form-group mb-3">
                                             <label class="txt">Mobile Number</label>
-                                            <input type="tel" autocomplete="off" name="phone" value="" class="form-control frm" required>
+                                            <input type="tel" autocomplete="off" name="mobile" value="" class="form-control frm" required>
                                         </div>
 
                                         <div class="form-group mb-3">
                                             <label class="txt">NID/Passport No.</label>
-                                            <input type="text" autocomplete="off" name="nid&psprt" value="" class="form-control frm" required>
+                                            <input type="text" autocomplete="off" name="nationalId" value="" class="form-control frm" required>
                                         </div>
                                         <div class="form-group mb-3">
                                             <label class="txt">Date of Birth</label>
@@ -138,26 +138,35 @@
                                                 <option value="Vietnam">
                                             </datalist>
                                         </div>
-
+                                        
 
                                         <h4 class="bookheading" style="margin-top: 10%;">
                                             Booking Information
                                         </h4>
                                         <hr style="border-color: black; opacity: 1; border-style:dashed; margin-bottom: 5%;" class="dropdown-divider">
                                         <div class="form-group mb-3">
-                                            <label class="txt">Selected Room</label>
-                                            <input type="text" autocomplete="off" name="selectedroom" value="" class="form-control frm" disabled />
-
+                                            <label class="txt">Selected Room: </label>
+                                            <!--<input type="text" autocomplete="off" name="selectedroom" value="" class="form-control frm" disabled />-->
+                                            <span id="roomType"></span>
+                                            <script>
+                                                document.getElementById("roomType").innerHTML = localStorage.getItem("roomtext");
+                                            </script>
                                         </div>
                                         <div class="form-group mb-3">
-                                            <label class="txt">Check In</label>
-                                            <input type="text" autocomplete="off" name="checkin" value="" class="form-control frm" disabled />
-
+                                            <label class="txt">Check In: </label>
+                                            <!--<input type="text" autocomplete="off" name="checkin" value="" class="form-control frm" disabled />-->
+                                            <span id="checkindate"></span>
+                                            <script>
+                                                document.getElementById("checkindate").innerHTML = localStorage.getItem("checkintext");
+                                            </script>
                                         </div>
                                         <div class="form-group mb-3">
-                                            <label class="txt">Check Out</label>
-                                            <input type="text" autocomplete="off" name="checkout" value="" class="form-control frm" disabled />
-
+                                            <label class="txt">Check Out: </label>
+                                            <!--<input type="text" autocomplete="off" name="checkout" value="" class="form-control frm" disabled />-->
+                                            <span id="checkoutdate"></span>
+                                            <script>
+                                                document.getElementById("checkoutdate").innerHTML = localStorage.getItem("checkouttext");
+                                            </script>
                                         </div>
                                         <h4 class="bookheading" style="margin-top: 5%;">
                                             Membership Information
@@ -204,14 +213,14 @@
         </p>
     </div>
     <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
-    <script src="~/Scripts/jquery-1.12.4.js"></script>
-    <script src="~/Scripts/jquery-ui.js"></script>
-    <script>
-        $( function() {
-            $( ".datepicker" ).datepicker();
-        } );
-    </script>
+                                            <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+                                            <script src="~/Scripts/jquery-1.12.4.js"></script>
+                                            <script src="~/Scripts/jquery-ui.js"></script>
+                                            <script>
+                                                $(function () {
+                                                    $(".datepicker").datepicker();
+                                                });
+                                            </script>
 </body>
 </html>
 

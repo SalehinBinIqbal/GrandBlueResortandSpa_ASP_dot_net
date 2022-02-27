@@ -1,4 +1,4 @@
-﻿
+﻿@model GrandBlueResortandSpa.Models.RoomBooking
 @{
     ViewBag.Title = "Index";
     Layout = null;
@@ -98,14 +98,14 @@
                     <div class="row justify-content-md-center">
                         <div class="col-md-8" style="background-color: black; opacity: 0.7; padding-top: 1em;">
                             <div class="container">
-                                <form action="">
+                                <form action="Book.cshtml">
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label class="txt">Check In</label>
                                                 <div class="input-container">
                                                     <div class="input-group">
-                                                        <input type="text" autocomplete="off" name="checkout" value="" placeholder="MM/DD/YYYY" class="form-control frmdd datepicker" required>
+                                                        <input type="text" autocomplete="off" id="checkindate" name="checkin" value="" placeholder="MM/DD/YYYY" class="form-control frmdd datepicker" required>
                                                         <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                                     </div>
                                                 </div>
@@ -116,7 +116,7 @@
                                                 <label class="txt">Check Out</label>
                                                 <div class="input-container">
                                                     <div class="input-group">
-                                                        <input type="text" autocomplete="off" name="checkout" value="" placeholder="MM/DD/YYYY" class="form-control frmdd datepicker" required>
+                                                        <input type="text" autocomplete="off" id="checkoutdate" name="checkout" value="" placeholder="MM/DD/YYYY" class="form-control frmdd datepicker" required>
                                                         <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                                     </div>
                                                 </div>
@@ -134,6 +134,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="rooms">
                 <div class="container">
                     <div class="row individual-room">
@@ -154,8 +155,21 @@
                                                         <td class="txt">5</td>
                                                     </tr>
                                                 </tbody>
+                                                <script>
+                                                    function passValueFromReservation() {
+                                                        var checkInDate = document.getElementById("checkindate").value;
+                                                        var checkOutDate = document.getElementById("checkoutdate").value;
+                                                        var roomType = "Ocean Side Villa";
+                                                        localStorage.setItem("checkintext", checkInDate);
+                                                        localStorage.setItem("checkouttext", checkOutDate);
+                                                        localStorage.setItem("roomtext", roomType);
+                                                        return false;
+                                                    }
+                                                </script>
                                                 <div class="card-footer">
-                                                    <button class="btn btn-secondary" style="float: right;">Book Room</button>
+                                                    <a href="@Url.Action("Book","Reservation")">
+                                                        <button type="submit" onclick="passValueFromReservation()" class="btn btn-secondary" style="float: right;">Book Room</button>
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>
@@ -164,27 +178,41 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="row individual-room">
-                        <div class="col-md-12">
-                            <div class="room-info">
-                                <div class="card">
-                                    <div class="row">
-                                        <div class="col-md-5">
-                                            <img src="~/Content/images/Rooms & Suites/FamilyVilla/Villa2.jpg" class="card-img-top" alt="...">
-                                        </div>
-                                        <div class="col-md-7">
-                                            <div class="card-body">
-                                                <h5 class="card-title">Family Villa</h5>
-                                                <p class="card-text">The Family Villas are luxurious 267sqm holiday homes for families or small groups. These two-story, three bedroom villas feature a living room, kitchenette, four bathrooms, two balconies with panoramic garden views. There’s also a terrace with BBQ grill and a large private pool. </p>
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="txt">Available:</td>
-                                                        <td class="txt">5</td>
-                                                    </tr>
-                                                </tbody>
-                                                <div class="card-footer">
-                                                    <button class="btn btn-secondary" style="float: right;">Book Room</button>
+                    <form action="Book.cshtml" method="post">
+                        <div class="row individual-room">
+                            <div class="col-md-12">
+                                <div class="room-info">
+                                    <div class="card">
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <img src="~/Content/images/Rooms & Suites/FamilyVilla/Villa2.jpg" class="card-img-top" alt="...">
+                                            </div>
+                                            <div class="col-md-7">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Family Villa</h5>
+                                                    <p class="card-text">The Family Villas are luxurious 267sqm holiday homes for families or small groups. These two-story, three bedroom villas feature a living room, kitchenette, four bathrooms, two balconies with panoramic garden views. There’s also a terrace with BBQ grill and a large private pool. </p>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class="txt">Available:</td>
+                                                            <td class="txt">5</td>
+                                                        </tr>
+                                                    </tbody>
+                                                    <script>
+                                                        function passValueFromReservation() {
+                                                            var checkInDate = document.getElementById("checkindate").value;
+                                                            var checkOutDate = document.getElementById("checkoutdate").value;
+                                                            var roomType = "Family Villa";
+                                                            localStorage.setItem("checkintext", checkInDate);
+                                                            localStorage.setItem("checkouttext", checkOutDate);
+                                                            localStorage.setItem("roomtext", roomType);
+                                                            return false;
+                                                        }
+                                                    </script>
+                                                    <div class="card-footer">
+                                                        <a href="@Url.Action("Index","Book")">
+                                                            <button type="submit" onclick="passValueFromReservation()" class="btn btn-secondary" style="float: right;">Book Room</button>
+                                                        </a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -192,28 +220,42 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="row individual-room">
-                        <div class="col-md-12">
-                            <div class="room-info">
-                                <div class="card">
-                                    <div class="row">
-                                        <div class="col-md-5">
-                                            <img src="~/Content/images/Rooms & Suites/DeluxeSuite/Suite1.jpg" class="card-img-top" alt="...">
-                                        </div>
-                                        <div class="col-md-7">
-                                            <div class="card-body">
-                                                <h5 class="card-title">Deluxe Suite</h5>
-                                                <p class="card-text">The 79 sqm Deluxe Suite comes with a private balcony and offers a magnificent vista across the bay while reflecting the resort’s signature design. A spacious stone-lined en suite bathroom with sunken bathtub and a rain-shower adds to the luxury experience.</p>
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="txt">Available:</td>
-                                                        <td class="txt">5</td>
-                                                    </tr>
-                                                </tbody>
-                                                <div class="card-footer">
-                                                    <button class="btn btn-secondary" style="float: right;">Book Room</button>
+                    </form>
+                    <form action="Book.cshtml" method="post">
+                        <div class="row individual-room">
+                            <div class="col-md-12">
+                                <div class="room-info">
+                                    <div class="card">
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <img src="~/Content/images/Rooms & Suites/DeluxeSuite/Suite1.jpg" class="card-img-top" alt="...">
+                                            </div>
+                                            <div class="col-md-7">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Deluxe Suite</h5>
+                                                    <p class="card-text">The 79 sqm Deluxe Suite comes with a private balcony and offers a magnificent vista across the bay while reflecting the resort’s signature design. A spacious stone-lined en suite bathroom with sunken bathtub and a rain-shower adds to the luxury experience.</p>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class="txt">Available:</td>
+                                                            <td class="txt">5</td>
+                                                        </tr>
+                                                    </tbody>
+                                                    <script>
+                                                        function passValueFromReservation() {
+                                                            var checkInDate = document.getElementById("checkindate").value;
+                                                            var checkOutDate = document.getElementById("checkoutdate").value;
+                                                            var roomType = "Deluxe Suite";
+                                                            localStorage.setItem("checkintext", checkInDate);
+                                                            localStorage.setItem("checkouttext", checkOutDate);
+                                                            localStorage.setItem("roomtext", roomType);
+                                                            return false;
+                                                        }
+                                                    </script>
+                                                    <div class="card-footer">
+                                                        <a href="@Url.Action("Index","Book")">
+                                                            <button type="submit" onclick="passValueFromReservation()" class="btn btn-secondary" style="float: right;">Book Room</button>
+                                                        </a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -221,28 +263,42 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="row individual-room">
-                        <div class="col-md-12">
-                            <div class="room-info">
-                                <div class="card">
-                                    <div class="row">
-                                        <div class="col-md-5">
-                                            <img src="~/Content/images/Rooms & Suites/PremiumSuite/Suite2.jpg" class="card-img-top" alt="...">
-                                        </div>
-                                        <div class="col-md-7">
-                                            <div class="card-body">
-                                                <h5 class="card-title">Premium Suite</h5>
-                                                <p class="card-text">The Premium Suite is the epitome of luxury and elegance. Featuring a spacious bedroom, large living and dressing areas, an en suite stone-lined bathroom with bathtub and rain shower, plus a private balcony with views over the sea to the horizon. These 128sqm suites are the ideal choice for the discerning traveler.</p>
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="txt">Available:</td>
-                                                        <td class="txt">5</td>
-                                                    </tr>
-                                                </tbody>
-                                                <div class="card-footer">
-                                                    <button class="btn btn-secondary" style="float: right;">Book Room</button>
+                    </form>
+                    <form action="Book.cshtml" method="post">
+                        <div class="row individual-room">
+                            <div class="col-md-12">
+                                <div class="room-info">
+                                    <div class="card">
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <img src="~/Content/images/Rooms & Suites/PremiumSuite/Suite2.jpg" class="card-img-top" alt="...">
+                                            </div>
+                                            <div class="col-md-7">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Premium Suite</h5>
+                                                    <p class="card-text">The Premium Suite is the epitome of luxury and elegance. Featuring a spacious bedroom, large living and dressing areas, an en suite stone-lined bathroom with bathtub and rain shower, plus a private balcony with views over the sea to the horizon. These 128sqm suites are the ideal choice for the discerning traveler.</p>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class="txt">Available:</td>
+                                                            <td class="txt">5</td>
+                                                        </tr>
+                                                    </tbody>
+                                                    <script>
+                                                        function passValueFromReservation() {
+                                                            var checkInDate = document.getElementById("checkindate").value;
+                                                            var checkOutDate = document.getElementById("checkoutdate").value;
+                                                            var roomType = "Premium Suite";
+                                                            localStorage.setItem("checkintext", checkInDate);
+                                                            localStorage.setItem("checkouttext", checkOutDate);
+                                                            localStorage.setItem("roomtext", roomType);
+                                                            return false;
+                                                        }
+                                                    </script>
+                                                    <div class="card-footer">
+                                                        <a href="@Url.Action("Index","Book")">
+                                                            <button type="submit" onclick="passValueFromReservation()" class="btn btn-secondary" style="float: right;">Book Room</button>
+                                                        </a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -250,28 +306,42 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="row individual-room">
-                        <div class="col-md-12">
-                            <div class="room-info">
-                                <div class="card">
-                                    <div class="row">
-                                        <div class="col-md-5">
-                                            <img src="~/Content/images/Rooms & Suites/OceanSideRoom/Room1.jpg" class="card-img-top" alt="...">
-                                        </div>
-                                        <div class="col-md-7">
-                                            <div class="card-body">
-                                                <h5 class="card-title">Ocean Side Room</h5>
-                                                <p class="card-text">Being located closest to the Resort’s private beach, the Ocean Side Rooms offer panoramic vistas of the Ocean. You will find yourself observing the sunrise in the early morning while having breakfast served on the private veranda. As part of The GrandBlue's concept, the rooms reflect the signature design of old world charm and elegance complemented with premium luxury standards.</p>
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="txt">Available:</td>
-                                                        <td class="txt">5</td>
-                                                    </tr>
-                                                </tbody>
-                                                <div class="card-footer">
-                                                    <button class="btn btn-secondary" style="float: right;">Book Room</button>
+                    </form>
+                    <form action="Book.cshtml" method="post">
+                        <div class="row individual-room">
+                            <div class="col-md-12">
+                                <div class="room-info">
+                                    <div class="card">
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <img src="~/Content/images/Rooms & Suites/OceanSideRoom/Room1.jpg" class="card-img-top" alt="...">
+                                            </div>
+                                            <div class="col-md-7">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Ocean Side Room</h5>
+                                                    <p class="card-text">Being located closest to the Resort’s private beach, the Ocean Side Rooms offer panoramic vistas of the Ocean. You will find yourself observing the sunrise in the early morning while having breakfast served on the private veranda. As part of The GrandBlue's concept, the rooms reflect the signature design of old world charm and elegance complemented with premium luxury standards.</p>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class="txt">Available:</td>
+                                                            <td class="txt">5</td>
+                                                        </tr>
+                                                    </tbody>
+                                                    <script>
+                                                        function passValueFromReservation() {
+                                                            var checkInDate = document.getElementById("checkindate").value;
+                                                            var checkOutDate = document.getElementById("checkoutdate").value;
+                                                            var roomType = "Ocean Side Room";
+                                                            localStorage.setItem("checkintext", checkInDate);
+                                                            localStorage.setItem("checkouttext", checkOutDate);
+                                                            localStorage.setItem("roomtext", roomType);
+                                                            return false;
+                                                        }
+                                                    </script>
+                                                    <div class="card-footer">
+                                                        <a href="@Url.Action("Index","Book")">
+                                                            <button type="submit" onclick="passValueFromReservation()" class="btn btn-secondary" style="float: right;">Book Room</button>
+                                                        </a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -279,7 +349,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -294,9 +364,9 @@
     <script src="~/Scripts/jquery-1.12.4.js"></script>
     <script src="~/Scripts/jquery-ui.js"></script>
     <script>
-        $( function() {
-            $( ".datepicker" ).datepicker();
-        } );
+        $(function () {
+            $(".datepicker").datepicker();
+        });
     </script>
 </body>
 
